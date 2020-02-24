@@ -30,20 +30,19 @@ function sendCard(news_number) {
             "type": "template",
             "payload": {
                 "template_type": "botton",
-                "text": "The tweet\n" + news[news_number][text] + "\nhas been identified as " + sentiment + ". Do you think it's correct?", 
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "YES",
-                            "payload": "yes"
-                        },
-                        {
-                            "type": "postback",
-                            "title": "NO",
-                            "payload": "no"
-                        }
-                    ]
-                }
+                "text": "The tweet\n" + news[news_number]["text"] + "\nhas been identified as " + sentiment + ". Do you think it's correct?", 
+                "buttons": [
+                    {
+                        "type": "postback",
+                        "title": "YES",
+                        "payload": "yes"
+                    },
+                    {
+                        "type": "postback",
+                        "title": "NO",
+                        "payload": "no"
+                    }
+                ]
             }
         }
     };

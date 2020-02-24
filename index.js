@@ -94,7 +94,7 @@ function handleMessage(sender_psid, received_message) {
   if (received_message.text) {    
 
     // Create the payload for a basic text message
-    response = sendCard(0);
+    response = cards.sendCard(0);
   }  
   
   // Sends the response message
@@ -136,7 +136,7 @@ function callSendAPI(sender_psid, response) {
     "json": request_body
   }, (err, res, body) => {
     if (!err) {
-      console.log('message sent!')
+      console.log(sender_psid + ' message sent!')
     } else {
       console.error("Unable to send message:" + err);
     }
