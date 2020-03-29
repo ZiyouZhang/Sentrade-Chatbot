@@ -30,6 +30,14 @@ Navigate to Sentrade-Chatbot, install all dependencies.
 [sudo] npm install
 ```
 
+Set the system variables.
+
+```
+export PAGE_ACCESS_TOKEN=<your token>
+export VERIFY_CODE=<your code>
+export MYSQL_PASSWORD=<your password>
+```
+
 Config the MySQL database.
 
 ```
@@ -86,4 +94,4 @@ curl -s localhost:4040/api/tunnels
 
 ## Authors
 
-* **Ziyou Zhang** - *Coding stuff*
+* **Ziyou Zhang** - *Cool coding stuff*
