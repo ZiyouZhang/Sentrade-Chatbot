@@ -94,7 +94,8 @@ function handleMessage(sender_psid, received_message) {
   if (received_message.text) {    
 
     // Create the payload for a basic text message
-    response = cards.sendCard(0);
+    // response = cards.sendCard(0);
+    response = {"text" : "The tweet\n" + "Facebook has some funny memes yall are missing out on them" + "\nhas been identified as neutrual. Do you think it's correct?"};
   }  
   
   // Sends the response message
@@ -110,9 +111,9 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = { "text": "Thanks!" }
+    response = cards.sendCard(0);
   } else if (payload === 'no') {
-    response = { "text": "Oops, try sending another image." }
+    response = cards.sendCard(0);
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);

@@ -8,7 +8,7 @@ news = [
         "id": 1173797377951424513,
         "created_at": "Tue Sep 17 03:14:37 +0000 2019",
         "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
-        "text": "Facebook has some funny ass memes yall are missing out on them",
+        "text": "Facebook has some funny memes yall are missing out on them",
         "company": "Facebook",
         "polarity": 0.024999999999999994,
         "subjectivity": 0.525
@@ -30,8 +30,9 @@ function sendCard(news_number) {
             "type": "template",
             "payload": {
                 "template_type": "botton",
-                "text": "The tweet\n" + news[news_number]["text"] + "\nhas been identified as " + sentiment + ". Do you think it's correct?", 
-                "buttons": [
+                // "text": "The tweet\n" + news[news_number]["text"] + "\nhas been identified as " + sentiment + ". Do you think it's correct?", 
+                "text": "The tweet\n" + "Facebook has some funny memes yall are missing out on them" + "\nhas been identified as neutrual. Do you think it's correct?",
+                 "buttons": [
                     {
                         "type": "postback",
                         "title": "YES",
