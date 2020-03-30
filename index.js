@@ -1,22 +1,24 @@
 'use strict';
 
+// Imports dependencies and set up http server
+const
+  PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN,
+  MYSQL_PASSWORD = '<your mysql database password>',
+  VERIFY_TOKEN = process.env.VERIFY_TOKEN,
+  express = require('express'),
+  bodyParser = require('body-parser'),
+  app = express().use(bodyParser.json()), // creates express http server
+  request = require('request'),
+  port = 1014,
+  template = require('./responseTemplates.js'),
+  mysql = require('mysql')
+
+var
+  NEWS_COUNT = template.news.length;
+
 // Inspect the tokens
 console.log(process.env.PAGE_ACCESS_TOKEN)
 console.log(process.env.VERIFY_TOKEN)
-
-// Imports dependencies and set up http server
-const
-    PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN,
-    MYSQL_PASSWORD = '<your mysql database password>',
-    VERIFY_TOKEN = process.env.VERIFY_TOKEN,
-    express = require('express'),
-    bodyParser = require('body-parser'),
-    app = express().use(bodyParser.json()), // creates express http server
-    request = require('request'),
-    port = 1014,
-    cards = require('./responseTemplates.js'),
-    mysql = require('mysql'),
-    schedule = require('node-schedule');
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || port, () => console.log('webhook is listening'));
@@ -94,7 +96,7 @@ function handleMessage(sender_psid, received_message) {
   if (received_message.text) {    
 
     // Create the payload for a basic text message
-    response = cards.sendCard(0);
+    response = template.sendQuestion(Math.random() * NEWS_COUNT);
     console.log(response)
     // response = {"text" : "The tweet\n" + "Facebook has some funny memes yall are missing out on them" + "\nhas been identified as neutrual. Do you think it's correct?"};
   }  
@@ -112,9 +114,9 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = cards.sendCard(0);
+    response = template.sendQuestion(Math.random() * NEWS_COUNT);
   } else if (payload === 'no') {
-    response = cards.sendCard(0);
+    response = template.sendQuestion(Math.random() * NEWS_COUNT);
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
@@ -247,9 +249,9 @@ function registerUser(sender_psid, mysql_pool){
 
                           // Send the response card
                           if (results[0].nums_left == -1) {
-                              callSendAPI(sender_psid, cards.parseStartCardResponse(0));
+                              callSendAPI(sender_psid, template.parseStartCardResponse(0));
                           } else {
-                              callSendAPI(sender_psid, cards.parseStartCardResponse(results[0].nums_left));
+                              callSendAPI(sender_psid, template.parseStartCardResponse(results[0].nums_left));
                           }
 
                           connection.release();
@@ -268,7 +270,7 @@ function registerUser(sender_psid, mysql_pool){
                                       if (error) throw error;
 
                                       // Send the response card
-                                      callSendAPI(sender_psid, cards.parseStartCardResponse(results[0].nums_left));
+                                      callSendAPI(sender_psid, template.parseStartCardResponse(results[0].nums_left));
 
                                       connection.release();
                                   });
@@ -309,9 +311,9 @@ function registerUser(sender_psid, mysql_pool){
 
                           // Send the response card
                           if (results[0].nums_left == -1) {
-                              callSendAPI(sender_psid, cards.parseStartCardResponse(0));
+                              callSendAPI(sender_psid, template.parseStartCardResponse(0));
                           } else {
-                              callSendAPI(sender_psid, cards.parseStartCardResponse(results[0].nums_left));
+                              callSendAPI(sender_psid, template.parseStartCardResponse(results[0].nums_left));
                           }
 
                           connection.release();
@@ -329,7 +331,7 @@ function registerUser(sender_psid, mysql_pool){
                                       if (error) throw error;
 
                                       // Send the response card
-                                      callSendAPI(sender_psid, cards.parseStartCardResponse(results[0].nums_left));
+                                      callSendAPI(sender_psid, template.parseStartCardResponse(results[0].nums_left));
 
                                       connection.release();
                                   });
