@@ -96,7 +96,7 @@ function handleMessage(sender_psid, received_message) {
   if (received_message.text) {    
 
     // Create the payload for a basic text message
-    response = template.sendQuestion(Math.random() * NEWS_COUNT);
+    response = template.sendQuestion(Math.floor(Math.random() * NEWS_COUNT));
     console.log(response)
     // response = {"text" : "The tweet\n" + "Facebook has some funny memes yall are missing out on them" + "\nhas been identified as neutrual. Do you think it's correct?"};
   }  
@@ -114,9 +114,9 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = template.sendQuestion(Math.random() * NEWS_COUNT);
+    response = template.sendQuestion(Math.floor(Math.random() * NEWS_COUNT));
   } else if (payload === 'no') {
-    response = template.sendQuestion(Math.random() * NEWS_COUNT);
+    response = template.sendQuestion(Math.floor(Math.random() * NEWS_COUNT));
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
