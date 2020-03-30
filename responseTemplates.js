@@ -25,30 +25,29 @@ function sendCard(news_number) {
         sentiment = "negative";
     }
 
-    // let response = {
-    //     "attachment": {
-    //         "type": "template",
-    //         "payload": {
-    //             "template_type": "botton",
-    //             "text": "The tweet\n" + news[news_number]["text"] + "\nhas been identified as " + sentiment + ". Do you think it's correct?", 
-    //             // "text": "The tweet\n" + "Facebook has some funny memes yall are missing out on them" + "\nhas been identified as neutrual. Do you think it's correct?",
-    //              "buttons": [
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "YES",
-    //                     "payload": "yes"
-    //                 },
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "NO",
-    //                     "payload": "no"
-    //                 }
-    //             ]
-    //         }
-    //     }
-    // };
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "botton",
+                "text": "The tweet\n" + news[news_number]["text"] + "\nhas been identified as " + sentiment + ". Do you think it's correct?", 
+                "buttons": [
+                    {
+                        "type": "postback",
+                        "title": "YES",
+                        "payload": "yes"
+                    },
+                    {
+                        "type": "postback",
+                        "title": "NO",
+                        "payload": "no"
+                    }
+                ]
+            }
+        }
+    };
 
-    let response = { "text": "The tweet\n" + news[news_number]["text"] + "\nhas been identified as " + sentiment + ". Do you think it's correct?"}
+    // let response = { "text": "The tweet\n" + news[news_number]["text"] + "\nhas been identified as " + sentiment + ". Do you think it's correct?"}
 
     return response;
 }
