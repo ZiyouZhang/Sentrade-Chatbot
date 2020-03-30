@@ -29,7 +29,7 @@ function sendCard(news_number) {
         "attachment": {
             "type": "template",
             "payload": {
-                "template_type": "botton",
+                "template_type": "button",
                 "text": "The tweet\n" + news[news_number]["text"] + "\nhas been identified as " + sentiment + ". Do you think it's correct?", 
                 "buttons": [
                     {
