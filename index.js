@@ -97,8 +97,6 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = template.sendQuestion(Math.floor(Math.random() * NEWS_COUNT));
-    console.log(response)
-    // response = {"text" : "The tweet\n" + "Facebook has some funny memes yall are missing out on them" + "\nhas been identified as neutrual. Do you think it's correct?"};
   }  
   
   // Sends the response message
